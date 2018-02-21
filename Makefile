@@ -15,7 +15,11 @@ MYSQL_PASSWORD      ?= keycloak
 MYSQL_ROOT_PASSWORD ?= mysql
 export
 
-## Find first pod and follow log output
-logs:
+## Test installation
+test:
 
-	for i in {1..100}; do sleep 1; if ! kubectl --namespace $(NS) logs -f $(shell kubectl get pods --all-namespaces -lapp=$(APP) -o jsonpath='{.items[0].metadata.name}'); then exit 0; fi; done; exit 1
+	@echo "$(GREEN)"
+
+	nslookup mysql
+
+	@echo "$(RESET)"
